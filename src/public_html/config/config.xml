@@ -1,0 +1,40 @@
+<config>
+	<Levels>
+	
+		<Level1>
+			<LevelName>Level 1</LevelName>
+			<LevelConfig>./config/level1.sg</LevelConfig>
+			<MaxRoutePoints>0</MaxRoutePoints>
+			<MinDistance>400</MinDistance>
+		</Level1>
+		
+		<Level2>
+			<LevelName>Level 2</LevelName>
+			<LevelConfig>./config/level2.sg</LevelConfig>
+			<MaxRoutePoints>5</MaxRoutePoints>
+			<MinDistance>60</MinDistance>
+		</Level2>
+                
+        <Level3>
+			<LevelName>Level 3</LevelName>
+			<LevelConfig>./config/level3.sg</LevelConfig>
+			<MaxRoutePoints>8</MaxRoutePoints>
+			<MinDistance>60</MinDistance>
+		</Level3>
+                
+        <Level4>
+			<LevelName>Level 4</LevelName>
+			<LevelConfig>./config/level4.sg</LevelConfig>
+			<MaxRoutePoints>12</MaxRoutePoints>
+			<MinDistance>60</MinDistance>
+		</Level4>
+                
+        <Level5>
+			<LevelName>Level 5</LevelName>
+			<LevelConfig>./config/level5.sg</LevelConfig>
+			<MaxRoutePoints>20</MaxRoutePoints>
+			<MinDistance>60</MinDistance>
+		</Level5>
+		
+	</Levels>
+</config>

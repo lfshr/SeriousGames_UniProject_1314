@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SG Route Planner</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/main.css" />
+        <script type="text/javascript" src="js/libs/modernizr/modernizr.js"></script>
+        <!--<script type="text/javascript" src="js/loader.js"></script>-->
+        <script type="text/javascript">
+            var main = {};
+            var librarypath = "js/libs/";
+            var classpath = "js/game/";
+
+            window.addEventListener("load", function(){
+    
+                Modernizr.load([
+                    {
+                        load: [
+                            librarypath+"jquery-2.03/jquery-2.0.3.min.js",
+                            librarypath+"calculator/calc.js",
+                            classpath+"dom.js",
+                            classpath+"sg_engine.js",
+                            classpath+"resources.js",
+                            classpath+"game.js",
+                            classpath+"help.js",
+                            classpath+"assessment.js",
+                            classpath+"main.js"
+                        ],
+                        complete: function(){
+                            console.log("All files loaded!");
+                            main.showScreen("splash-screen");
+                        }
+                    }  
+                ]);
+    
+            }, false);
+        </script>
+    </head>
+    <body>
+        <div id="game">
+            <div class="screen" id="splash-screen">
+                <!--<div class="logoText">Route Planner</div>-->
+                <img class ="logo" src ="image/logo.png" alt="logo"/>
+                <div class="continue" onclick="main.showScreen('main-menu')">Continue</div>
+            </div>
+            <div class="screen" id="main-menu">
+                <div class="mainmenu-entry" onclick="main.showScreen('game-screen')">Play Game</div>
+                <div class="mainmenu-entry">My Progress</div>
+                <div class="mainmenu-entry" onclick="main.showScreen('helpPage')">Help and Instructions (Look here first)</div>
+            </div>
+            <div class="screen" id="pre-game-screen">
+                <div class="solveScreenTitle">Welcome to Route Planner!</div>
+                
+            </div>
+            <div class="screen" id="game-screen">
+                <canvas class="game-canvas" id="game-canvas" width="900" height="600"></canvas>
+                <div class="mistakeHelper active" id="mistakeHelper">Mistake!</div>
+                <div class="game-control" id="answer_interface">
+                    <div class="solveScreenTitle" onclick="">Welcome to Route Planner</div>
+                    <div class="solveScreenExplain">Click on a connection point to solve it. Once all connection points are solved, the level is over!</div>
+                </div>
+                
+
+            </div>
+            <table class="calculator" id="calculator" style="padding-left:900px; padding-top: 100px;"><tr><td><table align="center" cellpadding="10"><form onsubmit="return false;"><tr><td><div id="calinfoout"><div class="calinfoinner"><input type="text" name="input" size="16" id="calInfoOutPut" onclick="this.focus()" maxlength="16" value="0" readonly><hr><input type="button" value="sin" onclick="r('sin')" class="calinfofunc"><input type="button" value="cos" onclick="r('cos')" class="calinfofunc"><input type="button" value="tan" onclick="r('tan')" class="calinfofunc"><input type="button" value="ln" onclick="r('ln')" class="calinfofunc"><input type="button" value="log" onclick="r('log')" class="calinfofunc"><input type="button" value="asin" onclick="r('asin')" class="calinfofunc"><input type="button" value="acos" onclick="r('acos')" class="calinfofunc"><input type="button" value="atan" onclick="r('atan')" class="calinfofunc"><input type="button" value="e^x" onclick="r('ex')" class="calinfofunc"><input type="button" value="10^x" onclick="r('10x')" class="calinfofunc"><input type="button" value="x^y" onclick="r('pow')" class="calinfofunc"><input type="button" value="x^3" onclick="r('x3')" class="calinfofunc"><input type="button" value="x^2" onclick="r('x2')" class="calinfofunc"><input type="button" value="e" onclick="r('e')" class="calinfofunc"><input type="button" value="&#960;" onclick="r('pi')" class="calinfofunc"><input type="button" value="y&#8730;x" onclick="r('apow')" class="calinfofunc"><input type="button" value="3&#8730;x" onclick="r('3x')" class="calinfofunc"><input type="button" value="&#8730;x" onclick="r('sqrt')" class="calinfofunc"><input type="button" value="x&#8596;y" onclick="r('swap')" class="calinfofunc"><input type="button" value="1/x" onclick="r('1/x')" class="calinfofunc"><input type="button" value="(" onclick="r('(')" class="calinfofunc"><input type="button" value=")" onclick="r(')')" class="calinfofunc"><input type="button" value="n!" onclick="r('n!')" class="calinfofunc"><input type="button" value="&#8240;" onclick="r('qc')" class="calinfofunc"><input type="button" value="%" onclick="r('pc')" class="calinfofunc"><hr><input type="button" value="1" onclick="r(1)" class="calinfonm"><input type="button" value="2" onclick="r(2)" class="calinfonm"><input type="button" value="3" onclick="r(3)" class="calinfonm"><input type="button" value="+" onclick="r('+')" class="calinfoop"><input type="button" value="MS" onclick="r('MS')" class="calinfoop"><br /><input type="button" value="4" onclick="r(4)" class="calinfonm"><input type="button" value="5" onclick="r(5)" class="calinfonm"><input type="button" value="6" onclick="r(6)" class="calinfonm"><input type="button" value="-" onclick="r('-')" class="calinfoop"><input type="button" value="M+" onclick="r('M+')" class="calinfoop"><input type="button" value="7" onclick="r(7)" class="calinfonm"><input type="button" value="8" onclick="r(8)" class="calinfonm"><input type="button" value="9" onclick="r(9)" class="calinfonm"><input type="button" value="*" onclick="r('*')" class="calinfoop"><input type="button" value="M-" onclick="r('M-')" class="calinfoop"><input type="button" value="0" onclick="r(0)" class="calinfonm"><input type="button" value="." onclick="r('.')" class="calinfonm"><input type="button" value="EXP" onclick="r('EXP')" class="calinfoop"><input type="button" value="/" onclick="r('/')" class="calinfoop"><input type="button" value="MR" onclick="r('MR')" class="calinfoop"><br /><input type="button" value="+/-" onclick="r('+/-')" class="calinfoop"><input type="button" value="RND" onclick="r('RND')" class="calinfoop"><input type="button" value="C" onclick="r('C')" class="calinfoeq"><input type="button" value="=" onclick="r('=')" class="calinfoeq"><input type="button" value="MC" onclick="r('MC')" class="calinfoop"><br /></div></div><center id="calfootnote">powered by <a href="http://www.calculator.net">calculator.net</a></center></td></tr></form></table></td></tr></table>
+
+            <div class="screen" id="helpPage">
+                <div class="helpText">Click the connections between points to see the problem.</div>
+                <div class="helpText">Solve the problem to move onto the next planet.</div>
+                <div class="helpText">Reach the end point to complete the stage and move onto the next quadrant.</div>
+                <div class="helpText">Good luck Captain!</div>
+                <div class="mainmenu-entry" style="text-align:right; padding-right: 30px;" onclick="main.showScreen('helpPage2')">Next Page</div>
+            </div>
+            <div class="screen" id="helpPage2">
+                <div class="helpText">Look carefully at what the question is asking you.</div>
+                <div class="helpText">The more answers you get correct in a row the better your score!</div>
+                <div class="helpText">Remember the following to help you on your journey.</div>
+                <img class ="DSTDiagram" src ="image/DST.png" alt="DST"/>
+                <div class="mainmenu-entry" style="text-align:right; padding-right: 30px;" onclick="main.showScreen('game-screen')">Start Playing</div>
+            </div>
+            <div class="screen" id="results_screen">
+        <div class="helpText">Well done!  You reached the goal!</div>
+        </div>
+        </div>
+    </body>
+</html>
